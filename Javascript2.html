@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+</head>
+<body>
+	<input id="Godine"  value = "17"/>
+
+	<button onclick ="funkcijaGodine()"> Klikni</button>
+ 	<button onclick = "najBroj()"> Klikni</button>
+	<p id = "demo"></p>
+		<button id = "mybut"> Klik</button>
+
+	<div id = "div1">
+	<p> jedan </p>
+	</div>
+	<button onclick = "promBo()"> Klikni za promjenu boje </button>
+
+	<script type="text/javascript">
+ 
+	
+	 <!-- Provjera godina  -->
+			function funkcijaGodine (){
+				var god, poruka;
+	<!-- DAVANJE VRIJEDNOSTI NEKOJ VARIJABLI BEZ INNER.HTML -->
+				god = Number(document.getElementById("Godine").value);
+				if(isNaN(god)){
+					poruka = "nije dobar input";
+				}
+			if(god < 18){
+				poruka = "Nedovoljno godina";
+			}
+			if(god >= 18){
+				poruka = "OK input";
+			}
+	<!-- ISPIS UNUTAR HTML -->
+		document.getElementById("demo").innerHTML = poruka;
+		}
+	
+		function najBroj() {
+		var niz = new Array();
+ 
+			for (i=0; i<5; i++)
+				niz.push(parseInt(prompt("Upiši broj")));
+				niz.sort(function(a, b){return b-a});
+				document.getElementById("demo").innerHTML = niz[0];
+	        }
+		function treDat(){
+			var d = new Date();
+			document.getElementById("demo").innerHTML = d.getDate() + " " + d.getHours() + " " +d.getMinutes();
+		}
+ 
+		function petlja(){
+			var i ;
+			var text = " ";
+		for(i = 0; i < 6; i ++){
+			text =  text + "The number is " + i + "<br />";
+		}
+		document.getElementById("demo").innerHTML= text;
+		}
+		function objekti(){
+			var osoba = new Object();
+			osoba.ime = "simo";
+			osoba.godine= 24;
+			document.getElementById("demo").innerHTML = osoba.ime;
+		}
+ 
+		function vjezbaKonstruktor(ime, prezime,godine){
+			this.ime = ime;
+			this.prezime = prezime;
+			this.godine = godine;
+		}
+ 
+		var ja = new vjezbaKonstruktor("simo", "matijevic", 24);
+		document.getElementById("demo").innerHTML = ja.ime + " " + ja.prezime + " " + ja.godine ;
+	<!-- funkcija unutar varijable -->
+		var x = function (a) { return a+a;
+		}
+		document.getElementById("demo").innerHTML = x(4);
+ 
+ 
+	<!-- EVENTS -->
+		function klik(id){
+			id.innerHTML = "2*2";
+		}
+ 
+ <!-- DATUM pomocu skripte -->
+ 
+		function datum(){
+			document.getElementById("demo").innerHTML = Date();
+		}
+ 
+ 
+ <!-- PROVJERA Cookies -->
+		function checkCookies() {
+			var text = "";
+			if (navigator.cookieEnabled == true) {
+				text = "Cookies are enabled.";
+			} else {
+				text = "Cookies are not enabled.";
+			}
+			document.getElementById("demo").innerHTML = text;
+		}
+
+<!-- ON MOUSE OUT MOUSE -->
+		function naMisu(obj){
+			obj.innerHTML = "na objektu";
+		}
+		function izvanMisa(obj){
+			obj.innerHTML = " Izvan objekta";
+		}
+	<!-- NA DRZANJE MISA -->
+		function drzanje(obj){
+			var count = 0;
+			count++;
+			if (count > 2) {
+				obj.innerHTML = "Malo dugo";
+			}
+				obj.innerHTML = "Drzis mis";
+			}
+ 
+		function pustanje(obj){
+			obj.innerHTML = "Pustio si mis";
+		}
+ <!-- EVENT LISTENERS -->
+		document.getElementById("mybut").addEventListener("click", myfJ);
+		document.getElementById("mybut").addEventListener("mouseover", myfD);
+		document.getElementById("mybut").addEventListener("mouseout",myfT);
+ 
+		function myfJ(){
+			document.getElementById("java").innerHTML += " Klik  <br />";
+		}
+		function myfD(){
+			document.getElementById("java").innerHTML += " Na mišu si  <br />";
+		}
+		function myfT(){
+			document.getElementById("java").innerHTML += " Vrati se na klik <br />";
+		}
+ <!-- KREIRANJE DOKUMENTA SA JS. NODE. -->
+ 
+		var para = document.createElement("p");
+		var node = document.createTextNode("Ja sam paragraf iz node.");
+		para.appendChild(node);
+		var element = document.getElementById("div1");
+		element.appendChild(para);
+ 
+ <!-- PROMJENA BACKGROUND COLOR SVIM P  -->
+		function promBo(){
+			var myNodes = document.getElementsByTagName("p");
+			var i;
+		for(i = 0; i < myNodes.length; i++){
+			myNodes[i].style.backgroundColor = "red";
+		}
+		}
+		function goForward() {
+			if(window.history.forward() == true){
+			document.getElementById("demo").innerHTML = " Stop";
+		}
+}
+
+	</script>
+	<hr class="vertical" style = "width: 0px; height : 100px; margin-left: 300px"/>
+
+	<h1 id = "h01"></h1>
+	<button onmousedown = "drzanje(this)" onmouseup= "pustanje(this)" style = "width : 120px; height : 20px; background-color : blue; padding : 20px"> Mišu moj mali</button>
+	<button onmouseover = "naMisu(this)" onmouseout= "izvanMisa(this)" style = "width :120px ; height :20px; background-color :blue; padding : 40px"> Igra s mišem</button>
+	<body onload="checkCookies()">
+
+	<button onclick ="datum()"> Klikni za datum</button>
+	<h1 onclick= "klik(this)"> Klikni</h1>
+	<button onclick="treDat()"> Klikni za trenutni sat</button>
+	<button onclick = "petlja()"> Klikni za petlju</button>
+	<button onclick = "objekti()"> Klikni za vjezbu objketi</button>
+	<p id = "java"></p>
+
+</body>
+</html>
